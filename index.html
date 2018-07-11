@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Pet Form</title>
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-grid.css">
+    <link rel="stylesheet" href="css/bootstrap-reboot.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="js/bootstrap.bundle.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/main.js"></script>
+
+</head>
+
+<body>
+    <!-- NAVIGATION BAR -->
+    <div class="container-fluid">
+        <nav class="navbar navbar-light bg-light nav-border">
+
+            <a class="navbar-brand" href="#" title="Adopt a Dog">
+                <img src="img/dog.jpg" width="30" height="30" alt="">
+            </a>
+
+            <a class="navbar-brand" href="#" title="Adopt a Cat">
+                <img src="img/cat.png" width="30" height="30" alt="">
+            </a>
+
+        </nav>
+        <br>
+    </div>
+
+    <!-- Jumbotron with title and buttons -->
+
+    <div class="container-fluid">
+
+        <div class="jumbotron jumbotron-fluid offset-1 col-10">
+            <h1 class="display-4" align="center">Pet-Form</h1>
+            <p class="lead" align="center">Help us understand more about you!</p>
+
+            <div align="center">
+                <a href="#"><button type="button" class="btn btn-warning">Donate!</button>
+                </a>
+
+                <a href="#"><button type="button" class="btn btn-outline-dark">Book a visit</button>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- First Container: [Name] / [Age] -->
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-9 col-sm-8">
+               Name:
+                <form>
+                    <div class="form-row">
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="First name" id="firstName">
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Last name" id="lastNAme">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-3 col-sm-4" align="left">
+                Age:
+                <form>
+                    <div class="form-row">
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Age">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <hr />
+
+    <!-- Second Container: [Person Type] / [Have at Home?] -->
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <!-- First Question - Radio Inline - [Person Type] -->
+            <div class="card card2 col-sm-6 col-md-5 offset-md-1 text-center">
+
+                <div class="card-body">
+                    <p>
+                        You are a:
+                    </p>
+
+                    <div class="form-check form-check-inline form-padding">
+                        <button class="btn btn-outline-info" onclick="checkRadio('personTypeDog');">
+                            <input class="form-check-input" type="radio" name="personType" id="personTypeDog" value="Dog" onclick="typePerson('<strong>a Dog</strong>');">
+                            <label class="form-check-label" for="personTypeDog"><strong>Dog</strong> Person</label>
+                        </button>
+                    </div>
+
+                    <div class="form-check form-check-inline form-padding">
+                        <button class="btn btn-outline-info" onclick="checkRadio('personTypeCat');">
+                            <input class="form-check-input" type="radio" name="personType" id="personTypeCat" value="Cat" onclick="typePerson('<strong>a Cat</strong>');">
+                            <label class="form-check-label" for="personTypeCat"><strong>Cat</strong> Person</label>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Second Question - Radio Inline - [Have at home?] -->
+            <div class="card card2 col-sm-6 col-md-5 text-center">
+
+                    <div class="card-body">
+                        <p>
+                            Would you have
+                            <span id="theAnimal">an animal</span>
+                            at home?'
+                        </p>
+
+                        <div class="form-check form-check-inline form-padding">
+                            <button class="btn btn-outline-info btn-outline-info-sm" id="noCheck" onclick="checkRadio('wantAnimalNo'); closeForm(); alert('clicked');">
+                                <input class="form-check-input" type="radio" name="wantAnimal" id="wantAnimalNo" value="No" checked>
+                                <label class="form-check-label" for="wantAnimalNo">No</label>
+                            </button>
+                        </div>
+
+                        <div class="form-check form-check-inline form-padding">
+                            <button class="btn btn-outline-info btn-outline-info-sm" id="yesCheck" onclick="checkRadio('wantAnimalYes'); openForm();">
+                                <input class="form-check-input" type="radio" name="wantAnimal" id="wantAnimalYes" value="Yes">
+                                <label class="form-check-label" for="wantAnimalYes">Yes</label>
+                            </button>
+                        </div>
+                    </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <hr />
+
+    <!-- Third Container - Hidden Form -  [How Many] / [Pet Names] -->
+
+    <div class="container-fluid" id="ifYes" style="display:none">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+
+                <div class="card cardhidden">
+
+                    <div class="card-body">
+                        <form class="form-inline" id="howMany">
+                            <label class="my-1 mr-2" for="howManyAnimals">How many animals would you have?</label>
+                            <select class="custom-select my-1 mr-sm-2" id="howManyAnimals" onchange="totalPetsChange(this.value);">
+                                <option name="numberAnimal" value="1">1</option>
+                                <option name="numberAnimal" value="2">2</option>
+                                <option name="numberAnimal" value="3">3</option>
+                                <option name="numberAnimal" value="4">4</option>
+                                <option name="numberAnimal" value="5">5</option>
+                            </select>
+                        </form>
+                        <hr />
+                        <form id="animalNames">
+                            <p>
+                                What name would you choose for each one of them?
+                            </p>
+                            <div class="row">
+
+                                <div class="col-md-4 col-sm-6 form-padding petInput">
+                                    <input type="text" class="form-control petName" id="Pet1" placeholder="First Pet">
+                                </div>
+
+                                <div class="col-md-4 col-sm-6 form-padding petInput hideField">
+                                    <input type="text" class="form-control petName" id="Pet2" placeholder="Second Pet">
+                                </div>
+
+                                <div class="col-md-4 col-sm-6 form-padding petInput hideField">
+                                    <input type="text" class="form-control petName" id="Pet3" placeholder="Third Pet">
+                                </div>
+
+                                <div class="col-md-4 col-sm-6 form-padding petInput hideField">
+                                    <input type="text" class="form-control petName" id="Pet4" placeholder="Fourth Pet">
+                                </div>
+
+                                <div class="col-md-4 col-sm-6 form-padding petInput hideField">
+                                    <input type="text" class="form-control"  id="Pet5" placeholder="Fifth Pet">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr />
+
+</body>
+
+<!-- Footer: [Send Button] -->
+
+<footer>
+    <div class="container-fluid">
+        <nav class="navbar navbar-light navbar-size bg-light nav-border">
+            <a class="navbar-brand" href="#" title="Adopt a Dog">
+                <img src="img/dog.jpg" width="30" height="30" alt="">
+            </a>
+
+            <div align="center">
+                <a href="#">
+                    <button type="button" class="btn btn-info" onclick="formSent();">Send</button>
+                </a>
+
+                <p>Thank you for your contribution!</p>
+            </div>
+
+            <a class="navbar-brand" href="#" title="Adopt a Cat">
+                <img src="img/cat.png" width="30" height="30" alt="">
+            </a>
+        </nav>
+    </div>
+</footer>
+
+</html>
